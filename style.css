@@ -1,0 +1,78 @@
+/* :root {
+  --main-bg-color: rgb(6, 84, 113);
+  --secondary-color: #086e7d;
+  --tertiary-color: #fff89a; 
+--primary-color: rgb(255, 192, 69);
+*/
+
+:root {
+  --white-color: rgb(255, 255, 255);
+  --grey-color: rgb(247, 247, 247);
+  --black-color: rgb (0, 0, 0);
+
+  --primary-color: rgb(255, 192, 69);
+  --secondary-color: rgb(6, 84, 113);
+}
+
+*,
+::after,
+::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.5;
+  font-size: 62.5%;
+  background-color: var(--white-color);
+}
+
+body {
+  color: var(--black-color);
+  font-size: 1.7rem;
+}
+
+header {
+  background-color: var(--secondary-color);
+}
+
+.nav {
+  height: 20vh;
+  width: 70%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav__logo {
+  height: 100%;
+  width: 10rem;
+  background-image: url(./src/images/HatchfulExport-All/linkedin_profile_image.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.nav__search {
+  width: 50rem;
+  height: 3rem;
+  margin-left: 5rem;
+  display: flex;
+  align-items: flex-start;
+}
+
+.nav__search--icon {
+  height: 3rem;
+  padding: 0.4rem;
+  background-color: white;
+}
+.nav__search--input {
+  width: 100%;
+  height: 3rem;
+  background-color: var(--white-color);
+  border: 0px solid;
+  outline: none;
+}

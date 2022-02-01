@@ -1,3 +1,7 @@
+//https://www.themoviedb.org/3/movie/550?api_key=057eb33b4af7c84b07e838484bbf482c
+
+57b4025ea3b2beb4d12b65e71d4dc270
+
 const movies = [
   {
     id: 1,
@@ -14,9 +18,6 @@ const movies = [
 
 const titleElement = document.querySelector(".title-input");
 const movieList = document.querySelector(".movie-list");
-
-// https://www.themoviedb.org/documentation/api
-// 057eb33b4af7c84b07e838484bbf482c
 
 function render() {
   movies.forEach((movie) => {

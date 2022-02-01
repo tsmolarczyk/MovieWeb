@@ -1,0 +1,2 @@
+1. jak najlepiej polaczyc search img z inputem, (ostatnio label + input) -> lupa + search bar 
+2. uzywac "use strict" ?
