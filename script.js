@@ -1,6 +1,12 @@
 //https://www.themoviedb.org/3/movie/550?api_key=057eb33b4af7c84b07e838484bbf482c
 
-57b4025ea3b2beb4d12b65e71d4dc270
+// https://api.themoviedb.org/3/movie/550?api_key=57b4025ea3b2beb4d12b65e71d4dc270
+
+fetch(
+  "https://api.themoviedb.org/3/movie/550?api_key=57b4025ea3b2beb4d12b65e71d4dc270"
+)
+  .then((response) => response.json())
+  .then((data) => console.log(data));
 
 const movies = [
   {
