@@ -1,2 +1,8 @@
 1. jak najlepiej polaczyc search img z inputem, (ostatnio label + input) -> lupa + search bar 
+
 2. uzywac "use strict" ?
+
+3. Fetch trzeba za kazdym razem uzywac, w kazdej funkcji musimy na nowo fetchowac?
+
+4. dlaczego nie laduje.  search dziala a potem get popular nie odswieza
+
