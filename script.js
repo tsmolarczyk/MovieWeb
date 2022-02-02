@@ -20,6 +20,31 @@ const movies = [
     title: "Szklana Pułapka",
     thumb: "https://fwcdn.pl/fpo/12/70/1270/7382745.3.jpg",
   },
+  {
+    id: 2,
+    title: "Szklana Pułapka",
+    thumb: "https://fwcdn.pl/fpo/12/70/1270/7382745.3.jpg",
+  },
+  {
+    id: 2,
+    title: "Szklana Pułapka",
+    thumb: "https://fwcdn.pl/fpo/12/70/1270/7382745.3.jpg",
+  },
+  {
+    id: 2,
+    title: "Szklana Pułapka",
+    thumb: "https://fwcdn.pl/fpo/12/70/1270/7382745.3.jpg",
+  },
+  {
+    id: 2,
+    title: "Szklana Pułapka",
+    thumb: "https://fwcdn.pl/fpo/12/70/1270/7382745.3.jpg",
+  },
+  {
+    id: 2,
+    title: "Szklana Pułapka",
+    thumb: "https://fwcdn.pl/fpo/12/70/1270/7382745.3.jpg",
+  },
 ];
 
 const titleElement = document.querySelector(".title-input");
@@ -39,7 +64,10 @@ function render() {
     movieThumbElement.src = movie.thumb;
 
     // adding classes
+    movieElement.classList.add("movie-element");
+    movieIdElement.classList.add("movie-id");
     movieTitleElement.classList.add("movie-title");
+    movieThumbElement.classList.add("movie-poster");
 
     // adding elements
     movieList.appendChild(movieElement);

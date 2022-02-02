@@ -26,11 +26,10 @@ html {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.5;
   font-size: 62.5%;
-  background-color: var(--white-color);
+  background-color: var(--grey-color);
 }
 
 body {
-  color: var(--black-color);
   font-size: 1.7rem;
   width: 90%;
   margin: 2rem auto;
@@ -77,4 +76,33 @@ header {
   background-color: var(--white-color);
   border: 0px solid;
   outline: none;
+}
+
+.movie-list {
+  margin: 1rem auto;
+  display: flex;
+  flex-wrap: wrap;
+  width: 80%;
+  justify-content: center;
+}
+
+.movie-element {
+  margin: 2rem;
+  border: 1px solid rgb(255, 192, 69);
+}
+
+.movie-id {
+  font-size: 2rem;
+  text-align: center;
+  padding-bottom: 1rem;
+  color: var(--primary-color);
+}
+
+.movie-title {
+  text-align: center;
+  color: var(--secondary-color);
+}
+
+.movie-poster {
+  width: 25rem;
 }
