@@ -4,113 +4,147 @@ const API_KEY = "57b4025ea3b2beb4d12b65e71d4dc270";
 
 const titleElement = document.querySelector(".title-input");
 const movieList = document.querySelector(".movie-list");
+const searchInputElement = document.querySelector(".nav__search--input");
+
+let state = {
+  movies: [],
+  ready: 0,
+};
+
+function getMovies(link) {
+  fetch(link)
+    .then((res) => res.json())
+    .then((data) => {
+      let movies = data.results;
+      state.movies = movies;
+      state.ready = 1;
+      render();
+    });
+}
+
+function fetchPopularMovies() {
+  getMovies(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`);
+}
+
+function fetchByQuery() {
+  const searchInput = searchInputElement.value;
+  getMovies(
+    `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${searchInput}`
+  );
+}
+
+// 1 == true // toNumber 1==1
+// 2 == true // -> false 2==1
+// [1] == true // -> true
+// [] == true // false
 
 function render() {
-  fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`)
-    .then((res) => res.json())
-    .then((data) => {
-      let movies = data.results;
-      console.log(movies);
+  movieList.innerHTML = "";
+  if (state.ready === 0) {
+    const loadingIndicatorElement = document.createElement("p");
+    loadingIndicatorElement.textContent = "LOADING...";
+    loadingIndicatorElement.append(movieList);
+    return;
+  }
 
-      movies.forEach((movie) => {
-        // empty boxes
-        const movieElement = document.createElement("div");
-        const movieIdElement = document.createElement("h1");
-        const movieTitleElement = document.createElement("div");
-        const movieThumbElement = document.createElement("img");
+  state.movies.forEach((movie) => {
+    // empty boxes
+    const movieElement = document.createElement("div");
+    const movieIdElement = document.createElement("h1");
+    const movieTitleElement = document.createElement("div");
+    const movieThumbElement = document.createElement("img");
 
-        // taking value
-        movieIdElement.textContent = movie.id;
-        movieTitleElement.textContent = movie.title;
-        movieThumbElement.src = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
+    // taking value
+    movieIdElement.textContent = movie.id;
+    movieTitleElement.textContent = movie.title;
+    movieThumbElement.src = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
 
-        // adding classes
-        movieElement.classList.add("movie-element");
-        movieIdElement.classList.add("movie-id");
-        movieTitleElement.classList.add("movie-title");
-        movieThumbElement.classList.add("movie-poster");
+    // adding classes
+    movieElement.classList.add("movie-element");
+    movieIdElement.classList.add("movie-id");
+    movieTitleElement.classList.add("movie-title");
+    movieThumbElement.classList.add("movie-poster");
 
-        // adding elements
-        movieList.appendChild(movieElement);
-        movieElement.appendChild(movieIdElement);
-        movieElement.appendChild(movieTitleElement);
-        movieElement.appendChild(movieThumbElement);
-      });
-    });
+    // adding elements
+    movieList.appendChild(movieElement);
+    movieElement.appendChild(movieIdElement);
+    movieElement.appendChild(movieTitleElement);
+    movieElement.appendChild(movieThumbElement);
+  });
 }
 
-function popular() {
-  fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`)
-    .then((res) => res.json())
-    .then((data) => {
-      let movies = data.results;
-      console.log(movies);
+// function popular() {
+//   fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`)
+//     .then((res) => res.json())
+//     .then((data) => {
+//       let movies = data.results;
+//       console.log(movies);
 
-      movies.forEach((movie) => {
-        // empty boxes
-        const movieElement = document.createElement("div");
-        const movieIdElement = document.createElement("h1");
-        const movieTitleElement = document.createElement("div");
-        const movieThumbElement = document.createElement("img");
+//       movies.forEach((movie) => {
+//         // empty boxes
+//         const movieElement = document.createElement("div");
+//         const movieIdElement = document.createElement("h1");
+//         const movieTitleElement = document.createElement("div");
+//         const movieThumbElement = document.createElement("img");
 
-        // taking value
-        movieIdElement.textContent = movie.id;
-        movieTitleElement.textContent = movie.title;
-        movieThumbElement.src = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
+//         // taking value
+//         movieIdElement.textContent = movie.id;
+//         movieTitleElement.textContent = movie.title;
+//         movieThumbElement.src = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
 
-        // adding classes
-        movieElement.classList.add("movie-element");
-        movieIdElement.classList.add("movie-id");
-        movieTitleElement.classList.add("movie-title");
-        movieThumbElement.classList.add("movie-poster");
+//         // adding classes
+//         movieElement.classList.add("movie-element");
+//         movieIdElement.classList.add("movie-id");
+//         movieTitleElement.classList.add("movie-title");
+//         movieThumbElement.classList.add("movie-poster");
 
-        // adding elements
-        movieList.appendChild(movieElement);
-        movieElement.appendChild(movieIdElement);
-        movieElement.appendChild(movieTitleElement);
-        movieElement.appendChild(movieThumbElement);
-      });
-    });
-}
+//         // adding elements
+//         movieList.appendChild(movieElement);
+//         movieElement.appendChild(movieIdElement);
+//         movieElement.appendChild(movieTitleElement);
+//         movieElement.appendChild(movieThumbElement);
+//       });
+//     });
+// }
 
-function byKey() {
-  const searchInput = document.querySelector(".nav__search--input").value;
-  console.log(searchInput);
+// function byKey() {
+//   const searchInput = document.querySelector(".nav__search--input").value;
+//   console.log(searchInput);
 
-  fetch(
-    `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${searchInput}`
-  )
-    .then((res) => res.json())
-    .then((data) => {
-      let movies = data.results;
-      console.log(movies);
+//   fetch(
+//     `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${searchInput}`
+//   )
+//     .then((res) => res.json())
+//     .then((data) => {
+//       let movies = data.results;
+//       console.log(movies);
 
-      movies.forEach((movie) => {
-        // empty boxes
-        const movieElement = document.createElement("div");
-        const movieIdElement = document.createElement("h1");
-        const movieTitleElement = document.createElement("div");
-        const movieThumbElement = document.createElement("img");
+//       movies.forEach((movie) => {
+//         // empty boxes
+//         const movieElement = document.createElement("div");
+//         const movieIdElement = document.createElement("h1");
+//         const movieTitleElement = document.createElement("div");
+//         const movieThumbElement = document.createElement("img");
 
-        // taking value
-        movieIdElement.textContent = movie.id;
-        movieTitleElement.textContent = movie.title;
-        movieThumbElement.src = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
+//         // taking value
+//         movieIdElement.textContent = movie.id;
+//         movieTitleElement.textContent = movie.title;
+//         movieThumbElement.src = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
 
-        // adding classes
-        movieElement.classList.add("movie-element");
-        movieIdElement.classList.add("movie-id");
-        movieTitleElement.classList.add("movie-title");
-        movieThumbElement.classList.add("movie-poster");
+//         // adding classes
+//         movieElement.classList.add("movie-element");
+//         movieIdElement.classList.add("movie-id");
+//         movieTitleElement.classList.add("movie-title");
+//         movieThumbElement.classList.add("movie-poster");
 
-        // adding elements
-        movieList.appendChild(movieElement);
-        movieElement.appendChild(movieIdElement);
-        movieElement.appendChild(movieTitleElement);
-        movieElement.appendChild(movieThumbElement);
-      });
-    });
-}
+//         // adding elements
+//         movieList.appendChild(movieElement);
+//         movieElement.appendChild(movieIdElement);
+//         movieElement.appendChild(movieTitleElement);
+//         movieElement.appendChild(movieThumbElement);
+//       });
+//     });
+// }
 
 // // https://api.themoviedb.org/3/movie/550?api_key=57b4025ea3b2beb4d12b65e71d4dc270
 
