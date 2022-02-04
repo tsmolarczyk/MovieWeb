@@ -28,7 +28,7 @@ function getMovies(link) {
     .then((data) => {
       let movies = data.results;
       state.movies = movies;
-     // state.ready = 1;
+      // state.ready = 1;
       render();
     });
 }
@@ -39,11 +39,12 @@ function getMovies(link) {
 // [] == true // false
 
 function render() {
-  movieList.innerHTML = "";
+  // movieList.innerHTML = "";
   if (state.ready === 0) {
     const loadingIndicatorElement = document.createElement("p");
     loadingIndicatorElement.textContent = "LOADING...";
-    loadingIndicatorElement.append(movieList);
+    loadingIndicatorElement.classList.add("loadingIndicatorElement");
+    movieList.append(loadingIndicatorElement);
     return;
   }
 

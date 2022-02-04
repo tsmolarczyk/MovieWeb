@@ -89,6 +89,8 @@ button.get-popular {
   flex-wrap: wrap;
   width: 80%;
   justify-content: center;
+  background-color: red;
+  height: 50vh;
 }
 
 .movie-element {
