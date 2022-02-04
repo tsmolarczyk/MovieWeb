@@ -11,17 +11,6 @@ let state = {
   ready: 0,
 };
 
-function getMovies(link) {
-  fetch(link)
-    .then((res) => res.json())
-    .then((data) => {
-      let movies = data.results;
-      state.movies = movies;
-      state.ready = 1;
-      render();
-    });
-}
-
 function fetchPopularMovies() {
   getMovies(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`);
 }
@@ -31,6 +20,17 @@ function fetchByQuery() {
   getMovies(
     `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${searchInput}`
   );
+}
+
+function getMovies(link) {
+  fetch(link)
+    .then((res) => res.json())
+    .then((data) => {
+      let movies = data.results;
+      state.movies = movies;
+     // state.ready = 1;
+      render();
+    });
 }
 
 // 1 == true // toNumber 1==1
