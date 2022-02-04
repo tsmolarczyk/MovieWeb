@@ -114,3 +114,7 @@ button.get-popular {
 .movie-poster {
   width: 80%;
 }
+
+.loadingIndicatorElement {
+  width: 100%;
+}
