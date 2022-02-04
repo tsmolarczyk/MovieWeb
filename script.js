@@ -28,7 +28,7 @@ function getMovies(link) {
     .then((data) => {
       let movies = data.results;
       state.movies = movies;
-      state.ready = 1;
+     // state.ready = 1;
       render();
     });
 }
