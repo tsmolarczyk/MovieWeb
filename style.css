@@ -89,7 +89,6 @@ button.get-popular {
   flex-wrap: wrap;
   width: 80%;
   justify-content: center;
-  background-color: red;
   height: 50vh;
 }
 
@@ -115,8 +114,4 @@ button.get-popular {
 
 .movie-poster {
   width: 80%;
-}
-
-.loadingIndicatorElement {
-  width: 100%;
 }
