@@ -88,30 +88,57 @@ button.get-popular {
   display: flex;
   flex-wrap: wrap;
   width: 80%;
+  height: auto;
   justify-content: center;
-  height: 50vh;
 }
 
 .movie-element {
-  margin: 2rem;
+  /* margin: 2rem;
   width: 25rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center; */
+  margin: 0 auto;
+  max-width: 60rem;
+  display: grid;
+  place-items: center;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-auto-rows: minmax(100px, auto);
+  padding: 1rem 0;
+  border: 1px solid var(--secondary-color);
+  border-bottom: none;
+  cursor: pointer;
+  z-index: 10;
 }
 
-.movie-id {
+.movie-vote {
   font-size: 2rem;
   text-align: center;
   padding-bottom: 1rem;
   color: var(--primary-color);
+  pointer-events: none;
 }
 
 .movie-title {
   text-align: center;
   color: var(--secondary-color);
+  pointer-events: none;
 }
 
 .movie-poster {
   width: 80%;
+  pointer-events: none;
+}
+
+/* modal */
+
+.modal-description {
+  position: fixed;
+  top: 50%;
+  left: 40%;
+  background-color: red;
+  opacity: 0;
+}
+.active {
+  opacity: 1;
 }

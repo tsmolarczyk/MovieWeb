@@ -6,7 +6,7 @@ const titleElement = document.querySelector(".title-input");
 const movieList = document.querySelector(".movie-list");
 const searchInputElement = document.querySelector(".nav__search--input");
 
-const movieDetails = document.querySelector(".movie-details");
+const modalDescription = document.querySelector(".modal-description");
 
 let state = {
   movies: [],
@@ -49,41 +49,44 @@ function render() {
   state.movies.forEach((movie) => {
     // empty boxes
     const movieElement = document.createElement("div");
-    const movieIdElement = document.createElement("h1");
+    const movieVoteElement = document.createElement("h1");
     const movieTitleElement = document.createElement("p");
     const movieThumbElement = document.createElement("img");
 
     // taking value
-    movieIdElement.textContent = movie.id;
+    movieVoteElement.textContent = movie.vote_average;
     movieTitleElement.textContent = movie.title;
     movieThumbElement.src = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
 
     // adding classes
     movieElement.classList.add("movie-element");
-    movieIdElement.classList.add("movie-id");
+    movieVoteElement.classList.add("movie-vote");
     movieTitleElement.classList.add("movie-title");
     movieThumbElement.classList.add("movie-poster");
 
     // adding elements
     movieList.appendChild(movieElement);
-    movieElement.appendChild(movieIdElement);
+    movieElement.appendChild(movieVoteElement);
     movieElement.appendChild(movieTitleElement);
     movieElement.appendChild(movieThumbElement);
   });
 }
 
-function showDetails() {
-  // const movieDetails = document.querySelector(".movie-details");
+// MODAL
+const modalTitle = document.createElement("h3");
+const modalText = document.createElement("p");
+const modalBtn = document.createElement("button");
 
-  // movieList.style.display = "none";
+const modalList = document.getElementsByClassName("movie-element");
+console.log("here");
+console.log(movieList);
 
-  state.movies.forEach((movie) => {
-    const movieDescription = document.createElement("div");
-    const movieOverview = document.createElement("p");
+movieList.addEventListener("click", function (e) {
+  const title = e.target.querySelector(".movie-title").innerText;
+  console.log(title);
+  openModal();
+});
 
-    movieDetails.appendChild(movieDescription);
-    movieDescription.appendChild(movieOverview);
-
-    movieOverview.textContent = movie.overview;
-  });
+function openModal() {
+  modalDescription.classList.toggle("active");
 }
