@@ -109,6 +109,7 @@ button.get-popular-btn:hover {
 }
 
 button.search-btn {
+  text-transform: uppercase;
   background-color: var(--tertiary-color);
 }
 button.search-btn:hover {
