@@ -8,6 +8,7 @@ const searchInputElement = document.querySelector(".nav__search--input");
 
 const modalDescription = document.querySelector(".modal-description");
 
+//Cczy w ty mmiejscu > z by byl dostep
 const modalCloseBtn = document.createElement("button");
 
 let state = {
@@ -54,23 +55,27 @@ function render() {
     const movieVoteElement = document.createElement("h1");
     const movieTitleElement = document.createElement("p");
     const movieThumbElement = document.createElement("img");
+    const movieOverviewElement = document.createElement("p");
 
     // taking value
     movieVoteElement.textContent = movie.vote_average;
     movieTitleElement.textContent = movie.title;
     movieThumbElement.src = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
+    movieOverviewElement.textContent = movie.overview;
 
     // adding classes
     movieElement.classList.add("movie-element");
     movieVoteElement.classList.add("movie-vote");
     movieTitleElement.classList.add("movie-title");
     movieThumbElement.classList.add("movie-poster");
+    movieOverviewElement.classList.add("movie-overview");
 
     // adding elements
     movieList.appendChild(movieElement);
     movieElement.appendChild(movieVoteElement);
     movieElement.appendChild(movieTitleElement);
     movieElement.appendChild(movieThumbElement);
+    movieElement.appendChild(movieOverviewElement);
   });
 }
 
@@ -83,7 +88,10 @@ console.log(movieList);
 movieList.addEventListener("click", function (e) {
   const title = e.target.querySelector(".movie-title").innerText;
   console.log(title);
-  modalDescription.classList.contains("active") ? closeModal() : openModal();
+  const overview = e.target.querySelector(".movie-overview").innerText;
+  modalDescription.classList.contains("active")
+    ? closeModal()
+    : openModal(title, overview);
   console.log("here");
 });
 
@@ -91,26 +99,27 @@ modalCloseBtn.addEventListener("click", (e) => {
   closeModal();
 });
 
-function openModal() {
+function openModal(title, overview) {
   if (modalDescription.classList.contains("active")) {
     return;
   }
-  renderModal();
+  renderModal(title, overview);
   modalDescription.classList.add("active");
+  movieList.classList.add("shadow");
 }
 
 function closeModal() {
   modalDescription.textContent = "";
   modalDescription.classList.remove("active");
+  movieList.classList.remove("shadow");
 }
 
-function renderModal() {
+function renderModal(title, overview) {
   const modalTitle = document.createElement("h3");
   const modalText = document.createElement("p");
 
   modalTitle.textContent = title;
-  modalText.textContent =
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, ad?";
+  modalText.textContent = overview;
 
   modalCloseBtn.classList.add("close-btn");
 

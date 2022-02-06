@@ -90,7 +90,6 @@ header {
 }
 
 .nav .btn {
-  height: 3rem;
   padding: 0.5rem;
   margin-left: 2rem;
   border: none;
@@ -121,7 +120,6 @@ button.search-btn:hover {
   margin: 1rem auto;
   display: flex;
   flex-wrap: wrap;
-  width: 80%;
   height: auto;
   justify-content: center;
 }
@@ -175,8 +173,9 @@ button.search-btn:hover {
 
 .modal-description {
   position: fixed;
-  top: 30%;
-  left: 35%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   padding: 1.5rem;
   background-color: var(--white-color);
   border: solid 2px var(--primary-color);
@@ -185,17 +184,23 @@ button.search-btn:hover {
 }
 .active {
   opacity: 1;
+  /* zapytac */
   z-index: 99;
+}
+
+.shadow {
+  background-color: rgba(0, 0, 0, 0.9);
+  opacity: 0.6;
 }
 
 .close-btn {
   position: absolute;
-  top: 10%;
+  top: 1%;
   right: 2%;
-  padding: 0 1rem;
+  padding: 0 3rem;
   transition: transform 0.25s, opacity 0.25s;
   opacity: 1;
-  background-color: white;
+  background-color: transparent;
   color: rgb(200, 75, 49);
   cursor: pointer;
   font-size: 4rem;
