@@ -125,13 +125,8 @@ button.search-btn:hover {
 }
 
 .movie-element {
-  /* margin: 2rem;
-  width: 25rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center; */
-  margin: 0.5rem auto;
-  max-width: 60rem;
+  margin: 0.5rem;
+  width: 80rem;
   background-color: var(--white-color);
   display: grid;
   place-items: center;
@@ -161,7 +156,7 @@ button.search-btn:hover {
 }
 
 .movie-poster {
-  width: 80%;
+  width: 100%;
   pointer-events: none;
 }
 
@@ -173,7 +168,7 @@ button.search-btn:hover {
 
 .modal-description {
   position: fixed;
-  top: 50%;
+  top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 1.5rem;
