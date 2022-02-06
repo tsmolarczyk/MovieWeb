@@ -81,10 +81,6 @@ function render() {
 
 // MODAL
 
-const modalList = document.getElementsByClassName("movie-element");
-console.log("here");
-console.log(movieList);
-
 movieList.addEventListener("click", function (e) {
   const title = e.target.querySelector(".movie-title").innerText;
   console.log(title);
@@ -92,7 +88,6 @@ movieList.addEventListener("click", function (e) {
   modalDescription.classList.contains("active")
     ? closeModal()
     : openModal(title, overview);
-  console.log("here");
 });
 
 modalCloseBtn.addEventListener("click", (e) => {
