@@ -8,6 +8,8 @@ const searchInputElement = document.querySelector(".nav__search--input");
 
 const modalDescription = document.querySelector(".modal-description");
 
+const modalCloseBtn = document.createElement("button");
+
 let state = {
   movies: [],
   ready: 0,
@@ -73,9 +75,6 @@ function render() {
 }
 
 // MODAL
-const modalTitle = document.createElement("h3");
-const modalText = document.createElement("p");
-const modalBtn = document.createElement("button");
 
 const modalList = document.getElementsByClassName("movie-element");
 console.log("here");
@@ -84,9 +83,38 @@ console.log(movieList);
 movieList.addEventListener("click", function (e) {
   const title = e.target.querySelector(".movie-title").innerText;
   console.log(title);
-  openModal();
+  modalDescription.classList.contains("active") ? closeModal() : openModal();
+  console.log("here");
+});
+
+modalCloseBtn.addEventListener("click", (e) => {
+  closeModal();
 });
 
 function openModal() {
-  modalDescription.classList.toggle("active");
+  if (modalDescription.classList.contains("active")) {
+    return;
+  }
+  renderModal();
+  modalDescription.classList.add("active");
+}
+
+function closeModal() {
+  modalDescription.textContent = "";
+  modalDescription.classList.remove("active");
+}
+
+function renderModal() {
+  const modalTitle = document.createElement("h3");
+  const modalText = document.createElement("p");
+
+  modalTitle.textContent = title;
+  modalText.textContent =
+    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, ad?";
+
+  modalCloseBtn.classList.add("close-btn");
+
+  modalDescription.appendChild(modalTitle);
+  modalDescription.appendChild(modalText);
+  modalDescription.appendChild(modalCloseBtn);
 }

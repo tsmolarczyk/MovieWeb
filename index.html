@@ -16,19 +16,18 @@
     <header>
         <div class="nav">
             <a class="nav__logo" href=""></a>
-            <form class="nav__search">
+            <label class="nav__search">
                 <img class="nav__search--icon" src="./src/images/search (1).png" alt="">
                 <input class="nav__search--input" type="text" placeholder="Szukaj filmów i seriali">
-            </form>
-            <button onclick="fetchPopularMovies()" class="get-popular">GET POPULAR MOVIES</button>
-            <button onclick="fetchByQuery()" class="search">search</button>
-            <button class="test" onclick="showDetails()">Details</button>
+            </label>
+            <button onclick="fetchPopularMovies()" class="btn get-popular-btn">GET POPULAR MOVIES</button>
+            <button onclick="fetchByQuery()" class="btn search-btn">search</button>
         </div>
     </header>
 
 
     <div class="movie-list"></div>
-    <div class="modal-description">OPIS FILMU, szczegóły!!</div>
+    <div class="modal-description"></div>
     <script src="./script.js"></script>
 </body>
 
