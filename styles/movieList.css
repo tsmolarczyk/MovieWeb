@@ -1,0 +1,40 @@
+.movie-element {
+  margin: 0.5rem;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  flex-direction: column;
+  background-color: var(--white-color);
+
+  border-bottom: none;
+  cursor: pointer;
+}
+.movie-element:hover {
+  background-color: var(--tertiary-color);
+}
+
+.movie-vote {
+  font-size: 3rem;
+  text-align: center;
+  padding-bottom: 1rem;
+  color: var(--primary-color);
+  pointer-events: none;
+}
+
+.movie-title {
+  font-weight: 600;
+  font-size: 2rem;
+  padding: 0.5rem;
+  text-align: center;
+  color: var(--black-color);
+  pointer-events: none;
+}
+
+.movie-poster {
+  width: 100%;
+  pointer-events: none;
+}
+
+.movie-overview {
+  display: none;
+}

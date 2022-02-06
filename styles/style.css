@@ -134,7 +134,6 @@ button.search-btn:hover {
 
   border-bottom: none;
   cursor: pointer;
-  z-index: 10;
 }
 .movie-element:hover {
   background-color: var(--tertiary-color);
@@ -177,15 +176,13 @@ button.search-btn:hover {
   background-color: var(--white-color);
   border: solid 2px var(--primary-color);
   border-radius: 15px;
-  opacity: 0;
   width: 40%;
-}
-.active {
-  opacity: 1;
-  /* zapytac */
-  z-index: 99;
+  display: none;
 }
 
+.active {
+  display: block;
+}
 .shadow {
   background-color: rgba(0, 0, 0, 0.9);
   opacity: 0.6;
