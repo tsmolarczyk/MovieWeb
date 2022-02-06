@@ -117,6 +117,8 @@ function renderModal(title, overview) {
   modalText.textContent = overview;
 
   modalCloseBtn.classList.add("close-btn");
+  modalTitle.classList.add("modal-title");
+  modalText.classList.add("modal-text");
 
   modalDescription.appendChild(modalTitle);
   modalDescription.appendChild(modalText);
