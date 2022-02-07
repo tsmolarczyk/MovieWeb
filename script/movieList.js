@@ -1,5 +1,3 @@
-// https://api.themoviedb.org/3/movie/550?api_key=57b4025ea3b2beb4d12b65e71d4dc270
-
 const API_KEY = "57b4025ea3b2beb4d12b65e71d4dc270";
 
 const titleElement = document.querySelector(".title-input");
@@ -15,7 +13,19 @@ let state = {
   modalOpened: false,
 };
 
-// https://api.themoviedb.org/3/movie/${id}?api_key=....
+//////////////// dynamic searching
+
+searchInputElement.addEventListener("keyup", () => {
+  searchDuringWrite();
+});
+
+function searchDuringWrite() {
+  const searchInput = searchInputElement.value;
+  if (searchInput.length >= 3) {
+    fetchByQuery();
+  }
+}
+////////////////
 
 function fetchPopularMovies() {
   getMovies(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`);
