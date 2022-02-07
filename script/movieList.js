@@ -21,17 +21,27 @@ let state = {
 //   searchDuringWrite();
 // });
 
-const debounce = (fn, delay) => {
-  let timeoutId;
-  return function (...args) {
-    if (timeoutId) {
-      clearTimeout(timeoutId);
-    }
-    timeoutId = setTimeout(() => {
-      fn(...args);
-    }, delay);
+// prettier-ignore
+{
+ 
+  const debounce = (fn, delay) => {     // pobiera 2 argumenty, 1)funcja 2)delay
+    let timeoutId;                      // inicjalizacja zmiennej, zeby mozna bylo resetowac 
+    return function (...args) {         // zwraca funcje ze wszystkich podanych argumentow -> ...args -> rest parameter bierze ostatni parametr i dodaje do wczesniejszego
+      if (timeoutId) {
+        clearTimeout(timeoutId);        // jesli jest timeoutId to zeruj go, zaczynaj od poczatku odliczanie, 
+      }
+      timeoutId = setTimeout(() => {    // wywolanie funckcji z opoznieniem, ustawienie tez timeouta 
+        fn(...args);
+      }, delay);
+    };
   };
-};
+}
+searchInputElement.addEventListener(
+  "keyup",
+  debounce(() => {
+    searchDuringWrite();
+  }, 1000)
+);
 
 function searchDuringWrite() {
   const searchInput = searchInputElement.value;
@@ -39,14 +49,6 @@ function searchDuringWrite() {
     fetchByQuery();
   }
 }
-////////////////////////////////////////////////////////////////
-
-searchInputElement.addEventListener(
-  "keyup",
-  debounce(() => {
-    searchDuringWrite();
-  }, 1000)
-);
 
 ////////////////////////////////////////////////////////////////
 
