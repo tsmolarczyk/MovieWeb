@@ -1,2 +1,0 @@
-1. jak najlatwiej dotrzec do eventa. Teraz troche oszukalem i utworzylem overview na etapie pobierania filmow, potem uzylem tego do renderModal();
-2. jak naprawic to ze klikam z boku, na movieList i zawsze pokazuje 1 dziecko --> Spider-Man

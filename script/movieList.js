@@ -3,6 +3,7 @@ const API_KEY = "57b4025ea3b2beb4d12b65e71d4dc270";
 const titleElement = document.querySelector(".title-input");
 const movieList = document.querySelector(".movie-list");
 const searchInputElement = document.querySelector(".nav__search--input");
+const searchBtn = document.querySelector(".search-btn");
 
 const modalDescription = document.querySelector(".modal-description");
 
@@ -13,11 +14,24 @@ let state = {
   modalOpened: false,
 };
 
-//////////////// dynamic searching
+////////////////////////////////////////////////////////////////
+// dynamic searching before debouncing
 
-searchInputElement.addEventListener("keyup", () => {
-  searchDuringWrite();
-});
+// searchInputElement.addEventListener("keyup", () => {
+//   searchDuringWrite();
+// });
+
+const debounce = (fn, delay) => {
+  let timeoutId;
+  return function (...args) {
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+    }
+    timeoutId = setTimeout(() => {
+      fn(...args);
+    }, delay);
+  };
+};
 
 function searchDuringWrite() {
   const searchInput = searchInputElement.value;
@@ -25,7 +39,16 @@ function searchDuringWrite() {
     fetchByQuery();
   }
 }
-////////////////
+////////////////////////////////////////////////////////////////
+
+searchInputElement.addEventListener(
+  "keyup",
+  debounce(() => {
+    searchDuringWrite();
+  }, 1000)
+);
+
+////////////////////////////////////////////////////////////////
 
 function fetchPopularMovies() {
   getMovies(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`);
