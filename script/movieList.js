@@ -22,9 +22,8 @@ let state = {
 // });
 
 // prettier-ignore
-{
- 
-  const debounce = (fn, delay) => {     // pobiera 2 argumenty, 1)funcja 2)delay
+
+const debounce = (fn, delay) => {     // pobiera 2 argumenty, 1)funcja 2)delay
     let timeoutId;                      // inicjalizacja zmiennej, zeby mozna bylo resetowac 
     return function (...args) {         // zwraca funcje ze wszystkich podanych argumentow -> ...args -> rest parameter bierze ostatni parametr i dodaje do wczesniejszego
       if (timeoutId) {
@@ -35,7 +34,7 @@ let state = {
       }, delay);
     };
   };
-}
+
 searchInputElement.addEventListener(
   "keyup",
   debounce(() => {
