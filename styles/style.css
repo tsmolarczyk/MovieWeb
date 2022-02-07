@@ -165,8 +165,6 @@ button.search-btn:hover {
   display: none;
 }
 
-/* modal */
-
 .modal-description {
   position: fixed;
   top: 30%;
