@@ -4,14 +4,26 @@ const titleElement = document.querySelector(".title-input");
 const movieList = document.querySelector(".movie-list");
 const searchInputElement = document.querySelector(".nav__search--input");
 const searchBtn = document.querySelector(".search-btn");
+const navBar = document.querySelector(".nav");
 
 const modalDescription = document.querySelector(".modal-description");
+
+// assets/
+// - images
+// - fonts
+// src
+// - components
+//  -- movie-list
+//   --- movie-list.js
+//   --- movie-list.css
+//
 
 let state = {
   movies: [],
   movieDetails: null,
   ready: false,
   modalOpened: false,
+  page: 1,
 };
 
 ////////////////////////////////////////////////////////////////
@@ -58,7 +70,7 @@ function fetchPopularMovies() {
 function fetchByQuery() {
   const searchInput = searchInputElement.value;
   getMovies(
-    `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${searchInput}`
+    `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${searchInput}&page=${state.page}`
   );
 }
 
@@ -82,6 +94,33 @@ function getMovies(link) {
       render();
     });
 }
+
+const previousPageBtn = document.createElement("button");
+const nextPageBtn = document.createElement("button");
+
+previousPageBtn.textContent = "previous";
+nextPageBtn.textContent = "next";
+
+nextPageBtn.classList.add("next-page-btn");
+previousPageBtn.classList.add("previous-page-btn");
+
+navBar.appendChild(nextPageBtn);
+navBar.appendChild(previousPageBtn);
+
+nextPageBtn.addEventListener("click", () => {
+  state.page++;
+  fetchByQuery();
+});
+
+// https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
+
+previousPageBtn.addEventListener("click", () => {
+  if (state.page <= 1) {
+    return;
+  }
+  state.page--;
+  fetchByQuery();
+});
 
 function render() {
   movieList.innerHTML = "";
