@@ -6,6 +6,8 @@ const searchInputElement = document.querySelector(".nav__search--input");
 const searchBtn = document.querySelector(".search-btn");
 const navBar = document.querySelector(".nav");
 
+const moreMovieBtn = document.createElement("button");
+
 const modalDescription = document.querySelector(".modal-description");
 
 // assets/
@@ -24,6 +26,7 @@ let state = {
   ready: false,
   modalOpened: false,
   page: 1,
+  onePageLoading: 0,
 };
 
 ////////////////////////////////////////////////////////////////
@@ -64,6 +67,8 @@ function searchDuringWrite() {
 ////////////////////////////////////////////////////////////////
 
 function fetchPopularMovies() {
+  // zerowanie inputa, zeby popular nie gryzl sie z searchem potem
+  searchInputElement.value = "";
   getMovies(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`);
 }
 
@@ -123,7 +128,10 @@ previousPageBtn.addEventListener("click", () => {
 });
 
 function render() {
-  movieList.innerHTML = "";
+  if (state.onePageLoading === 0) {
+    movieList.innerHTML = "";
+  }
+
   if (state.ready === false) {
     const loadingIndicatorElement = document.createElement("p");
     loadingIndicatorElement.textContent = "LOADING...";
@@ -143,12 +151,14 @@ function render() {
     movieVoteElement.textContent = movie.vote_average;
     movieTitleElement.textContent = movie.title;
     movieThumbElement.src = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
+    moreMovieBtn.textContent = "LOAD MORE MOVIES";
 
     // adding classes
     movieElement.classList.add("movie-element");
     movieVoteElement.classList.add("movie-vote");
     movieTitleElement.classList.add("movie-title");
     movieThumbElement.classList.add("movie-poster");
+    moreMovieBtn.classList.add("more-movie-btn");
 
     // adding elements
     movieList.appendChild(movieElement);
@@ -158,8 +168,40 @@ function render() {
 
     movieElement.addEventListener("click", () => handleMovieClick(movie.id));
   });
+
+  movieList.appendChild(moreMovieBtn);
+  state.onePageLoading = 0;
 }
 
 function handleMovieClick(id) {
   fetchDetails(id);
 }
+
+// LOADING MORE MOVIES BY BUTTON
+
+moreMovieBtn.addEventListener("click", loadMoreMoviesByBtn);
+
+function loadMoreMoviesByBtn() {
+  state.onePageLoading = 1;
+  console.log(state.onePageLoading);
+  state.page++;
+  fetchByQuery();
+  console.log(state.page);
+}
+
+// LOADING MORE MOVIES BY INTERSECTION-OBSERVER
+const footer = document.querySelector(".footer");
+
+let options = {
+  root: movieList,
+  rootMargin: "0px",
+  threshold: 1,
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    loadMoreMoviesByBtn();
+  });
+}, options);
+
+observer.observe(footer);

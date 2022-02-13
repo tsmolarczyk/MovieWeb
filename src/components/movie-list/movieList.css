@@ -38,3 +38,11 @@
 .movie-overview {
   display: none;
 }
+
+.more-movie-btn {
+  background-color: green;
+}
+
+.footer {
+  background-color: red;
+}
