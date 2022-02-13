@@ -167,6 +167,12 @@ function render() {
     movieElement.appendChild(movieThumbElement);
 
     movieElement.addEventListener("click", () => handleMovieClick(movie.id));
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        console.log("observ!!!");
+        loadMoreMoviesByBtn();
+      });
+    }, options);
   });
 
   movieList.appendChild(moreMovieBtn);
@@ -200,8 +206,9 @@ let options = {
 
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
+    console.log("observ!!!");
     loadMoreMoviesByBtn();
   });
 }, options);
 
-observer.observe(footer);
+observer.observe(movieList);
