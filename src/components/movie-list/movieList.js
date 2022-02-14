@@ -80,13 +80,24 @@ function fetchByQuery() {
 }
 
 function fetchDetails(id) {
-  fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`)
-    .then((res) => res.json())
-    .then((data) => {
-      state.movieDetails = data;
-      openModal();
-    });
+  fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`).then(
+    (res) => {
+      res.json().then((data) => {
+        state.movieDetails = data;
+        openModal();
+      });
+    }
+  );
 }
+
+// function fetchDetails(id) {
+//   fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`)
+//     .then((res) => res.json())
+//     .then((data) => {
+//       state.movieDetails = data;
+//       openModal();
+//     });
+// }
 
 function getMovies(link) {
   fetch(link)
@@ -212,3 +223,19 @@ const observer = new IntersectionObserver((entries) => {
 }, options);
 
 observer.observe(movieList);
+
+
+
+then('good')
+catch('bad')
+
+const myPromise = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve("foo");
+  }, 300);
+});
+
+myPromise
+  .then('good', 'bad')
+  .then(handleResolvedB, handleRejectedB)
+  .then(handleResolvedC, handleRejectedC);
