@@ -236,6 +236,6 @@ const myPromise = new Promise((resolve, reject) => {
 });
 
 myPromise
-  .then('good', 'bad')
+  .then(good, bad)
   .then(handleResolvedB, handleRejectedB)
   .then(handleResolvedC, handleRejectedC);

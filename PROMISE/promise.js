@@ -3,8 +3,7 @@
 function fetch() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      //   resolve({ response: { data: "cheesburger" } });
-      reject("error");
+        resolve({ response: { data: "cheesburger" } });
     }, 2000);
   });
 }
@@ -20,3 +19,5 @@ promise.catch((error) => {
 });
 
 promise.finally(() => {});
+
+Promise.race([fetch(), fetch()]).then()
