@@ -1,23 +1,67 @@
-// Promise.resolve().then(() => console.log("then"));
+// then('good')
+// catch('bad')
 
-function fetch() {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-        resolve({ response: { data: "cheesburger" } });
-    }, 2000);
-  });
-}
+// const myPromise = new Promise((resolve, reject) => {
+//   setTimeout(() => {
+//     resolve("foo");
+//   }, 300);
+// });
 
-const promise = fetch();
+// myPromise
+//   .then(good, bad)
+//   .then(handleResolvedB, handleRejectedB)
+//   .then(handleResolvedC, handleRejectedC);
 
-promise.then((cheesburger) => {
-  console.log(cheesburger);
-});
+// // Promise.resolve().then(() => console.log("then"));
 
-promise.catch((error) => {
-  console.log(error);
-});
+// function fetch() {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//         resolve({ response: { data: "cheesburger" } });
+//     }, 2000);
+//   });
+// }
 
-promise.finally(() => {});
+// const promise = fetch();
 
-Promise.race([fetch(), fetch()]).then()
+// promise.then((cheesburger) => {
+//   console.log(cheesburger);
+// });
+
+// promise.catch((error) => {
+//   console.log(error);
+// });
+
+// promise.finally(() => {});
+
+// Promise.race([fetch(), fetch()]).then()
+
+// function job() {
+//   const myPromise = new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       resolve(function ({ consolelog("hello world")}
+//     ;
+//     }, 2000);
+//   });
+// }
+
+// job();
+
+// function job(data) {
+//   return new Promise(function (resolve, reject) {
+//     if (isNaN(data)) {
+//       reject("error");
+//       return;
+//     } else if (data % 2 != 0) {
+//       setTimeout(function () {
+//         resolve("odd");
+//       }, 1000);
+//     } else {
+//       setTimeout(function () {
+//         reject("even");
+//       }, 2000);
+//     }
+//   });
+// }
+// console.log(job("col"));
+// console.log(job(122));

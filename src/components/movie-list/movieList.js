@@ -73,10 +73,12 @@ function fetchPopularMovies() {
 }
 
 function fetchByQuery() {
+  observer.observe(moreMovieBtn);
   const searchInput = searchInputElement.value;
   getMovies(
     `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${searchInput}&page=${state.page}`
   );
+  observer.unobserve(moreMovieBtn);
 }
 
 function fetchDetails(id) {
@@ -221,21 +223,3 @@ const observer = new IntersectionObserver((entries) => {
     loadMoreMoviesByBtn();
   });
 }, options);
-
-observer.observe(movieList);
-
-
-
-then('good')
-catch('bad')
-
-const myPromise = new Promise((resolve, reject) => {
-  setTimeout(() => {
-    resolve("foo");
-  }, 300);
-});
-
-myPromise
-  .then(good, bad)
-  .then(handleResolvedB, handleRejectedB)
-  .then(handleResolvedC, handleRejectedC);
