@@ -6,10 +6,7 @@ const searchInputElement = document.querySelector(".nav__search--input");
 const getPopularBtn = document.querySelector(".get-popular-btn");
 const searchBtn = document.querySelector(".search-btn");
 const navBar = document.querySelector(".nav");
-const moreMovieBtn = document.createElement("button");
 const modalDescription = document.querySelector(".modal-description");
-const previousPageBtn = document.createElement("button");
-const nextPageBtn = document.createElement("button");
 
 const footer = document.querySelector(".footer");
 
@@ -39,30 +36,7 @@ let state = {
   onePageLoading: 0,
 };
 
-previousPageBtn.textContent = "previous";
-nextPageBtn.textContent = "next";
-
-nextPageBtn.classList.add("next-page-btn");
-previousPageBtn.classList.add("previous-page-btn");
-
-navBar.appendChild(nextPageBtn);
-navBar.appendChild(previousPageBtn);
-
-nextPageBtn.addEventListener("click", handleNext);
-
 getPopularBtn.addEventListener("click", fetchPopularMovies);
-
-// moreMovieBtn.addEventListener("click", loadMoreMoviesByBtn);
-
-// https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
-
-previousPageBtn.addEventListener("click", () => {
-  if (state.page <= 1) {
-    return;
-  }
-  state.page--;
-  fetchByQuery();
-});
 
 searchInputElement.addEventListener(
   "keyup",
@@ -78,21 +52,16 @@ function handleNext() {
 }
 
 function debounce(fn, delay) {
-  // pobiera 2 argumenty, 1)funcja 2)delay
-  let timeoutId; // inicjalizacja zmiennej, zeby mozna bylo resetowac
+  let timeoutId;
   return function (...args) {
-    // zwraca funcje ze wszystkich podanych argumentow -> ...args -> rest parameter bierze ostatni parametr i dodaje do wczesniejszego
     if (timeoutId) {
       clearTimeout(timeoutId); // jesli jest timeoutId to zeruj go, zaczynaj od poczatku odliczanie,
     }
     timeoutId = setTimeout(() => {
-      // wywolanie funckcji z opoznieniem, ustawienie tez timeouta
       fn(...args);
     }, delay);
   };
 }
-
-////////////////////////////////////////////////////////////////
 
 function fetchPopularMovies() {
   state.onePageLoading = 0;
@@ -136,16 +105,6 @@ function handleMovieClick(id) {
   fetchDetails(id);
 }
 
-// LOADING MORE MOVIES BY BUTTON
-
-// function loadMoreMoviesByBtn() {
-//   state.onePageLoading = 1;
-//   console.log(state.onePageLoading);
-//   state.page++;
-//   fetchByQuery();
-//   console.log(state.page);
-// }
-
 function render() {
   if (state.onePageLoading === 0) {
     movieList.innerHTML = "";
@@ -170,14 +129,12 @@ function render() {
     movieVoteElement.textContent = movie.vote_average;
     movieTitleElement.textContent = movie.title;
     movieThumbElement.src = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
-    moreMovieBtn.textContent = "LOAD MORE MOVIES";
 
     // adding classes
     movieElement.classList.add("movie-element");
     movieVoteElement.classList.add("movie-vote");
     movieTitleElement.classList.add("movie-title");
     movieThumbElement.classList.add("movie-poster");
-    moreMovieBtn.classList.add("more-movie-btn");
 
     // adding elements
     movieList.appendChild(movieElement);
@@ -186,8 +143,6 @@ function render() {
     movieElement.appendChild(movieThumbElement);
 
     movieElement.addEventListener("click", () => handleMovieClick(movie.id));
-
-    movieList.appendChild(moreMovieBtn);
   });
   if (state.onePageLoading === 1) {
     observer.observe(footer);
