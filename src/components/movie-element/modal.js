@@ -1,5 +1,3 @@
-// MODAL
-
 function openModal() {
   state.modalOpened = true;
   renderModal();
@@ -38,5 +36,6 @@ function renderModal() {
   modalDescription.appendChild(modalText);
   modalDescription.appendChild(modalCloseBtn);
 
-  modalCloseBtn.addEventListener("click", () => closeModal());
+  modalCloseBtn.addEventListener("click", closeModal);
+  movieList.addEventListener("click", closeModal);
 }

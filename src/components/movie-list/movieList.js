@@ -8,25 +8,6 @@ const searchBtn = document.querySelector(".search-btn");
 const navBar = document.querySelector(".nav");
 const modalDescription = document.querySelector(".modal-description");
 
-const footer = document.querySelector(".footer");
-
-let options = {
-  // root: document.querySelector("body"),
-  rootMargin: "0px",
-  threshold: 0.5,
-};
-
-const observer = new IntersectionObserver((entries, observer) => {
-  entries.forEach((entry) => {
-    console.log(entry);
-    if (entry.isIntersecting) {
-      console.log(entry);
-      handleNext();
-      observer.unobserve(entry.target);
-    }
-  });
-}, options);
-
 let state = {
   movies: [],
   movieDetails: null,
@@ -36,11 +17,32 @@ let state = {
   onePageLoading: 0,
 };
 
+let options = {
+  //???????????????????????????????????????????????
+  // root: document.querySelector("body"),
+  //???????????????????????????????????????????????
+  rootMargin: "0px",
+  threshold: 0.5,
+};
+
+const observer = new IntersectionObserver((entries, observer) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      handleNext();
+      observer.unobserve(entry.target);
+    }
+  });
+}, options);
+
 getPopularBtn.addEventListener("click", fetchPopularMovies);
 
 searchInputElement.addEventListener(
   "keyup",
   debounce(() => {
+    //???????????????????????????????????????????????
+    movieList.innerHTML = "";
+    state.page = 1;
+    //???????????????????????????????????????????????
     state.onePageLoading = 1;
     fetchByQuery();
   }, 1000)
@@ -55,7 +57,7 @@ function debounce(fn, delay) {
   let timeoutId;
   return function (...args) {
     if (timeoutId) {
-      clearTimeout(timeoutId); // jesli jest timeoutId to zeruj go, zaczynaj od poczatku odliczanie,
+      clearTimeout(timeoutId);
     }
     timeoutId = setTimeout(() => {
       fn(...args);
@@ -65,7 +67,6 @@ function debounce(fn, delay) {
 
 function fetchPopularMovies() {
   state.onePageLoading = 0;
-  // zerowanie inputa, zeby popular nie gryzl sie z searchem potem
   searchInputElement.value = "";
   getMovies(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`);
 }
@@ -102,6 +103,10 @@ function getMovies(link) {
 }
 
 function handleMovieClick(id) {
+  //////////////////////////////// dodano
+  if (state.modalOpened === true) {
+    return;
+  }
   fetchDetails(id);
 }
 
@@ -130,6 +135,10 @@ function render() {
     movieTitleElement.textContent = movie.title;
     movieThumbElement.src = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
 
+    if (movie.poster_path === null) {
+      movieThumbElement.src = "assets/images/empty_poster.jpeg";
+    }
+
     // adding classes
     movieElement.classList.add("movie-element");
     movieVoteElement.classList.add("movie-vote");
@@ -143,8 +152,10 @@ function render() {
     movieElement.appendChild(movieThumbElement);
 
     movieElement.addEventListener("click", () => handleMovieClick(movie.id));
+
+    if (state.onePageLoading === 1 && index === state.movies.length - 1) {
+      console.log("inif");
+      observer.observe(movieElement);
+    }
   });
-  if (state.onePageLoading === 1) {
-    observer.observe(footer);
-  }
 }

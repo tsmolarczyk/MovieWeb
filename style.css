@@ -15,9 +15,9 @@ rgb(236, 219, 186)
   --white-color: rgb(255, 255, 255);
   --black-color: rgb(0, 0, 0);
 
-  --primary-color: rgb(45, 66, 99);
+  --primary-color: #2d4263;
   --secondary-color: rgb(200, 75, 49);
-  --tertiary-color: rgb(255, 248, 154);
+  --tertiary-color: #fff89a;
 }
 
 *,
@@ -32,24 +32,25 @@ html {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.5;
   font-size: 62.5%;
-  background-color: var(--black-color);
+  background-color: var(--white-color);
 }
 
 body {
   font-size: 1.7rem;
   width: 100%;
   margin: 2rem auto;
-  background-color: var(--black-color);
+  background-color: var(--white-color);
 }
 
 header {
-  background-color: var(--black-color);
+  background-color: var(--white-color);
+  border-bottom: 3px solid var(--primary-color);
 }
 
 .nav {
   height: 13vh;
   width: 70%;
-  margin: 0 auto;
+  margin: 2rem auto;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -57,64 +58,81 @@ header {
 
 .nav__logo {
   height: 100%;
-  width: 10rem;
-  background-image: url(./src/images/HatchfulExport/linkedin_profile_image.png);
+  width: 20rem;
+  color: white;
+  background-image: url(./assets/images/movieWeb_logo.jpeg);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .nav__search {
-  width: 50rem;
-  height: 3rem;
+  width: 80rem;
+  height: 5rem;
   margin-left: 5rem;
   display: flex;
   align-items: flex-start;
+  border: 3px solid var(--primary-color);
+  cursor: pointer;
 }
 
 .nav__search--icon {
-  height: 3rem;
   padding: 0.4rem;
+  margin: auto;
+  height: 80%;
   background-color: white;
   border-top-left-radius: 0.3rem;
   border-bottom-left-radius: 0.3rem;
 }
 .nav__search--input {
   width: 100%;
-  height: 3rem;
+  font-size: 2rem;
   background-color: var(--white-color);
   border: 0px solid;
   outline: none;
+  margin: auto;
+  padding-left: 1rem;
   border-top-right-radius: 0.3rem;
   border-bottom-right-radius: 0.3rem;
+  pointer-events: none;
 }
 
-.nav .btn {
+.btn {
+  height: 5rem;
   padding: 0.5rem;
   margin-left: 2rem;
-  border: none;
+  border: 1px solid rgb(227, 227, 227);
   outline: none;
   border-radius: 0.3rem;
   cursor: pointer;
-}
-
-button.get-popular-btn {
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
+  font-weight: 600;
+  border-radius: 3px;
+  line-height: 1.15;
+  font-size: 16px;
   color: var(--black-color);
-  background-color: var(--secondary-color);
-}
-
-button.get-popular-btn:hover {
-  color: var(--white-color);
-  background-color: rgb(200, 75, 49, 0.9);
+  text-transform: uppercase;
 }
 
 button.search-btn {
-  text-transform: uppercase;
   background-color: var(--tertiary-color);
 }
 button.search-btn:hover {
   color: var(--secondary-color);
   background-color: rgb(255, 248, 154, 0.9);
+  box-shadow: 0 0 0 0 #fff, 0 0 0 3px #2d4263;
+}
+
+button.get-popular-btn {
+  background: #c84b31e6;
+}
+button.get-popular-btn:hover {
+  transition: all 0.1s ease;
+  box-shadow: 0 0 0 0 #fff, 0 0 0 3px #2d4263;
+  text-transform: var(--white-color);
+  color: var(--white-color);
 }
 
 .movie-list {
@@ -127,10 +145,12 @@ button.search-btn:hover {
 .movie-element {
   margin: 0.5rem;
   display: flex;
+  width: 30vw;
   justify-content: end;
   align-items: center;
   flex-direction: column;
   background-color: var(--white-color);
+  border: 1px solid var(--secondary-color);
 
   border-bottom: none;
   cursor: pointer;
@@ -148,6 +168,7 @@ button.search-btn:hover {
 }
 
 .movie-title {
+  width: 40%;
   font-weight: 600;
   font-size: 2rem;
   padding: 0.5rem;
@@ -158,9 +179,19 @@ button.search-btn:hover {
 
 .movie-poster {
   width: 100%;
+  height: 100%;
   pointer-events: none;
 }
 
 .movie-overview {
   display: none;
+}
+
+footer {
+  text-align: center;
+  background-color: #2d4263;
+  color: var(--tertiary-color);
+  bottom: 0px;
+  margin-top: 80vh;
+  width: 100%;
 }
