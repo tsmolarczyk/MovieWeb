@@ -1,0 +1,13 @@
+dodane: 
+-podzielilem componenty, pousuwalem zbedne elementy, komentarze
+- intersecting obs
+- close modal klikajac obok
+- pusty plakat
+- RWD
+
+
+1. jak zrobic latwo double click, na input nie na img search. -- pointer events none!!
+2. komentarze ////// w movieList, zmiany dotyczace IntesectionObserver
+3. co dalej, jakich zagadnien mi brakuje? co sie uczyc?
+
+mechanizmy js

@@ -1,12 +1,19 @@
+.movie-list {
+  margin: 1rem auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 .movie-element {
   margin: 0.5rem;
   display: flex;
+  width: 30vw;
   justify-content: end;
   align-items: center;
   flex-direction: column;
   background-color: var(--white-color);
-
-  border-bottom: none;
+  border: 1px solid var(--secondary-color);
   cursor: pointer;
 }
 .movie-element:hover {
@@ -22,6 +29,8 @@
 }
 
 .movie-title {
+  width: 40%;
+
   font-weight: 600;
   font-size: 2rem;
   padding: 0.5rem;
@@ -32,6 +41,8 @@
 
 .movie-poster {
   width: 100%;
+  height: 100%;
+
   pointer-events: none;
 }
 
@@ -41,4 +52,16 @@
 
 .more-movie-btn {
   background-color: green;
+}
+
+@media (max-width: 1200px) {
+  .movie-element {
+    width: 50vh;
+  }
+}
+
+@media (max-width: 940px) {
+  .movie-element {
+    width: 90vh;
+  }
 }

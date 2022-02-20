@@ -7,6 +7,8 @@ const getPopularBtn = document.querySelector(".get-popular-btn");
 const searchBtn = document.querySelector(".search-btn");
 const navBar = document.querySelector(".nav");
 const modalDescription = document.querySelector(".modal-description");
+const sortAzBtn = document.querySelector(".sort-az");
+const sortZaBtn = document.querySelector(".sort-za");
 
 let state = {
   movies: [],
@@ -15,12 +17,11 @@ let state = {
   modalOpened: false,
   page: 1,
   onePageLoading: 0,
+  totalPages: 1,
 };
 
 let options = {
-  //???????????????????????????????????????????????
-  // root: document.querySelector("body"),
-  //???????????????????????????????????????????????
+  root: null,
   rootMargin: "0px",
   threshold: 0.5,
 };
@@ -39,10 +40,9 @@ getPopularBtn.addEventListener("click", fetchPopularMovies);
 searchInputElement.addEventListener(
   "keyup",
   debounce(() => {
-    //???????????????????????????????????????????????
+    // widok z logika!
     movieList.innerHTML = "";
     state.page = 1;
-    //???????????????????????????????????????????????
     state.onePageLoading = 1;
     fetchByQuery();
   }, 1000)
@@ -73,7 +73,7 @@ function fetchPopularMovies() {
 
 function fetchByQuery() {
   const searchInput = searchInputElement.value;
-  if (searchInput.length >= 3) {
+  if (searchInput.length >= 3 && state.totalPages >= state.page) {
     getMovies(
       `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${searchInput}&page=${state.page}`
     );
@@ -98,12 +98,28 @@ function getMovies(link) {
       let movies = data.results;
       state.movies = movies;
       state.ready = true;
+      state.totalPages = data.total_pages;
       render();
     });
 }
 
+sortAzBtn.addEventListener("click", sortMoviesAz);
+// sortZaBtn.addEventListener("click", sortMoviesZa);
+
+function sortMoviesAz() {
+  const foo = [{ id: 1 }, { id: 4 }, { id: 3 }];
+  foo.sort(function (a, b) {
+    if (a.id > b.id) {
+      return 1;
+    }
+    return -1;
+
+    // return -1 lub 1
+  });
+  console.log(foo);
+}
+
 function handleMovieClick(id) {
-  //////////////////////////////// dodano
   if (state.modalOpened === true) {
     return;
   }
@@ -133,10 +149,11 @@ function render() {
     // taking value
     movieVoteElement.textContent = movie.vote_average;
     movieTitleElement.textContent = movie.title;
-    movieThumbElement.src = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
 
     if (movie.poster_path === null) {
       movieThumbElement.src = "assets/images/empty_poster.jpeg";
+    } else {
+      movieThumbElement.src = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
     }
 
     // adding classes
@@ -154,7 +171,6 @@ function render() {
     movieElement.addEventListener("click", () => handleMovieClick(movie.id));
 
     if (state.onePageLoading === 1 && index === state.movies.length - 1) {
-      console.log("inif");
       observer.observe(movieElement);
     }
   });
