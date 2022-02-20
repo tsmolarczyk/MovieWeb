@@ -9,6 +9,7 @@ const navBar = document.querySelector(".nav");
 const modalDescription = document.querySelector(".modal-description");
 const sortAzBtn = document.querySelector(".sort-az");
 const sortZaBtn = document.querySelector(".sort-za");
+const sortByVoteBtn = document.querySelector(".sort-by-vote");
 
 let state = {
   movies: [],
@@ -100,24 +101,62 @@ function getMovies(link) {
       state.ready = true;
       state.totalPages = data.total_pages;
       render();
+      console.log(state.movies);
     });
 }
 
 sortAzBtn.addEventListener("click", sortMoviesAz);
-// sortZaBtn.addEventListener("click", sortMoviesZa);
+sortZaBtn.addEventListener("click", sortMoviesZa);
+sortByVoteBtn.addEventListener("click", sortByVote);
 
 function sortMoviesAz() {
-  const foo = [{ id: 1 }, { id: 4 }, { id: 3 }];
-  foo.sort(function (a, b) {
-    if (a.id > b.id) {
+  let sortedMovies = state.movies;
+  sortedMovies.sort(function (a, b) {
+    if (a.title > b.title) {
       return 1;
     }
     return -1;
-
-    // return -1 lub 1
   });
-  console.log(foo);
+  console.log(sortedMovies);
+  render();
 }
+
+function sortMoviesZa() {
+  let sortedMovies = state.movies;
+  sortedMovies.sort(function (a, b) {
+    if (a.title < b.title) {
+      return 1;
+    }
+    return -1;
+  });
+  console.log(sortedMovies);
+  render();
+}
+
+function sortByVote() {
+  let sortedMovies = state.movies;
+  sortedMovies.sort(function (a, b) {
+    if (a.vote_average < b.vote_average) {
+      return 1;
+    }
+    return -1;
+  });
+  render();
+}
+
+// function sortMoviesAz() {
+//   const foo = [{ id: 1 }, { id: 4 }, { id: 3 }];
+//   foo.sort(function (a, b) {
+//     if (a.id > b.id) {
+//       return 1;
+//     }
+//     return -1;
+//     state.movies.sort;
+//     // return -1 lub 1
+//   });
+//   console.log(foo);
+//   console.log(state.movies);
+// }
 
 function handleMovieClick(id) {
   if (state.modalOpened === true) {
