@@ -92,18 +92,34 @@ function fetchDetails(id) {
   );
 }
 
-function getMovies(link) {
-  fetch(link)
-    .then((res) => res.json())
-    .then((data) => {
-      let movies = data.results;
-      state.movies = movies;
-      state.ready = true;
-      state.totalPages = data.total_pages;
-      render();
-      console.log(state.movies);
-    });
+async function getMovies(link) {
+  const res = await fetch(link);
+  const json = await res.json();
+
+  console.log(json);
+  let movies = json.results;
+  state.movies = movies;
+  console.log(state.movies);
+
+  state.ready = true;
+  state.totalPages = json.total_pages;
+  render();
+  console.log(state.movies);
 }
+
+// function getMovies(link) {
+//   fetch(link)
+//     .then((res) => res.json())
+//     .then((data) => {
+//       let movies = data.results;
+
+//       state.movies = movies;
+//       state.ready = true;
+//       state.totalPages = data.total_pages;
+//       render();
+//       console.log(state.movies);
+//     });
+// }
 
 sortAzBtn.addEventListener("click", sortMoviesAz);
 sortZaBtn.addEventListener("click", sortMoviesZa);
