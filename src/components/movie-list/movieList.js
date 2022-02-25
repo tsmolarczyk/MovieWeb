@@ -136,7 +136,6 @@ function sortMoviesAz() {
   console.log(sortedMovies);
   render();
 }
-
 function sortMoviesZa() {
   let sortedMovies = state.movies;
   sortedMovies.sort(function (a, b) {
@@ -145,7 +144,6 @@ function sortMoviesZa() {
     }
     return -1;
   });
-  console.log(sortedMovies);
   render();
 }
 
