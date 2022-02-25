@@ -18,6 +18,7 @@ let state = {
   modalOpened: false,
   page: 1,
   onePageLoading: 0,
+  sort: 0,
   totalPages: 1,
 };
 
@@ -99,33 +100,18 @@ async function getMovies(link) {
   console.log(json);
   let movies = json.results;
   state.movies = movies;
-  console.log(state.movies);
-
   state.ready = true;
+  console.log(state.movies);
   state.totalPages = json.total_pages;
   render();
-  console.log(state.movies);
 }
-
-// function getMovies(link) {
-//   fetch(link)
-//     .then((res) => res.json())
-//     .then((data) => {
-//       let movies = data.results;
-
-//       state.movies = movies;
-//       state.ready = true;
-//       state.totalPages = data.total_pages;
-//       render();
-//       console.log(state.movies);
-//     });
-// }
 
 sortAzBtn.addEventListener("click", sortMoviesAz);
 sortZaBtn.addEventListener("click", sortMoviesZa);
 sortByVoteBtn.addEventListener("click", sortByVote);
 
 function sortMoviesAz() {
+  state.sort = 1;
   let sortedMovies = state.movies;
   sortedMovies.sort(function (a, b) {
     if (a.title > b.title) {
@@ -137,6 +123,7 @@ function sortMoviesAz() {
   render();
 }
 function sortMoviesZa() {
+  state.sort = 1;
   let sortedMovies = state.movies;
   sortedMovies.sort(function (a, b) {
     if (a.title < b.title) {
@@ -144,10 +131,13 @@ function sortMoviesZa() {
     }
     return -1;
   });
+  console.log(sortedMovies);
+
   render();
 }
 
 function sortByVote() {
+  state.sort = 1;
   let sortedMovies = state.movies;
   sortedMovies.sort(function (a, b) {
     if (a.vote_average < b.vote_average) {
@@ -158,20 +148,6 @@ function sortByVote() {
   render();
 }
 
-// function sortMoviesAz() {
-//   const foo = [{ id: 1 }, { id: 4 }, { id: 3 }];
-//   foo.sort(function (a, b) {
-//     if (a.id > b.id) {
-//       return 1;
-//     }
-//     return -1;
-//     state.movies.sort;
-//     // return -1 lub 1
-//   });
-//   console.log(foo);
-//   console.log(state.movies);
-// }
-
 function handleMovieClick(id) {
   if (state.modalOpened === true) {
     return;
@@ -180,7 +156,7 @@ function handleMovieClick(id) {
 }
 
 function render() {
-  if (state.onePageLoading === 0) {
+  if (state.onePageLoading === 0 || state.sort === 1) {
     movieList.innerHTML = "";
   }
 
