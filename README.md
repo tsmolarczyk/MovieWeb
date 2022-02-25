@@ -4,12 +4,11 @@ Site created in Vanilla Javascript, based on TMDB API.
 
 # Table of contents
 
-- [General info] (#general-info)
+- [General] (#technologies)
+- [Technologies] (#technologies)
+- [Setup] (#setup)
 
-* [Technologies] (#technologies)
-* [Setup] (#setup)
-
-## General info
+## General
 
 This project helps you find movies by searching them in the TMDB database.
 https://tsmolarczyk.github.io/MovieWeb/
