@@ -4,7 +4,7 @@ Site created in Vanilla Javascript, based on TMDB API.
 
 # Table of contents
 
-- [General] (#technologies)
+- [General] (#general)
 - [Technologies] (#technologies)
 - [Setup] (#setup)
 
