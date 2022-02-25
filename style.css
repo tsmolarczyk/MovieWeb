@@ -38,37 +38,7 @@ html {
 body {
   font-size: 1.7rem;
   width: 100%;
-  margin: 2rem auto;
+  min-height: 100vh;
+  margin: 0 auto;
   background-color: var(--white-color);
 }
-
-footer {
-  text-align: center;
-  background-color: #2d4263;
-  color: var(--tertiary-color);
-  bottom: 0px;
-  width: 100%;
-}
-
-/* .dropdown {
-  position: relative;
-}
-
-.dropdown-menu {
-  position: absolute;
-  left: 0;
-  top: calc(100% + 0.25rem);
-  background-color: red;
-  padding: 0.75rem;
-  border-radius: 0.25rem;
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(-10px);
-  transition: opacity 150ms ease-in-out;
-  transform: 150ms ease-in-out;
-}
-
-.dropdown > .sort:focus ~ .dropdown-menu {
-  opacity: 1;
-} */

@@ -73,15 +73,6 @@ header {
   text-transform: uppercase;
 }
 
-button.search-btn {
-  background-color: var(--tertiary-color);
-}
-button.search-btn:hover {
-  color: var(--secondary-color);
-  background-color: rgb(255, 248, 154, 0.9);
-  box-shadow: 0 0 0 0 #fff, 0 0 0 3px #2d4263;
-}
-
 button.get-popular-btn {
   background: #c84b31e6;
 }
@@ -90,6 +81,48 @@ button.get-popular-btn:hover {
   box-shadow: 0 0 0 0 #fff, 0 0 0 3px #2d4263;
   text-transform: var(--white-color);
   color: var(--white-color);
+}
+
+.sort {
+  background-color: var(--tertiary-color);
+  padding: 16px;
+  width: 100%;
+  font-size: 16px;
+  border: none;
+}
+.sort:hover {
+  color: var(--secondary-color);
+  background-color: rgb(255, 248, 154, 0.9);
+  box-shadow: 0 0 0 0 #fff, 0 0 0 3px #2d4263;
+}
+.dropdown {
+  position: relative;
+  display: inline-block;
+  color: black;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  min-width: 100px;
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  margin-top: 0.7rem;
+  text-decoration: none;
+  background-color: var(--tertiary-color);
+  display: block;
+  width: 100%;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
 }
 
 @media (max-width: 1200px) {

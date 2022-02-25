@@ -5,6 +5,32 @@
   justify-content: center;
 }
 
+.typeout {
+  display: inline-block;
+  overflow-wrap: break-word;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.hello-txt {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  color: var(--primary-color);
+  overflow: hidden;
+  font-size: 5rem;
+  margin: 20rem auto;
+  border-right: 0.15em solid var(--secondary-color);
+  white-space: nowrap;
+  animation: typing 2.5s steps(20, end) forwards;
+}
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
 .movie-element {
   margin: 0.5rem;
   display: flex;

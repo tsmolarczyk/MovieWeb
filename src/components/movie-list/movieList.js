@@ -96,12 +96,9 @@ function fetchDetails(id) {
 async function getMovies(link) {
   const res = await fetch(link);
   const json = await res.json();
-
-  console.log(json);
   let movies = json.results;
   state.movies = movies;
   state.ready = true;
-  console.log(state.movies);
   state.totalPages = json.total_pages;
   render();
 }
@@ -121,6 +118,7 @@ function sortMoviesAz() {
   });
   console.log(sortedMovies);
   render();
+  state.sort = 0;
 }
 function sortMoviesZa() {
   state.sort = 1;
@@ -131,9 +129,8 @@ function sortMoviesZa() {
     }
     return -1;
   });
-  console.log(sortedMovies);
-
   render();
+  state.sort = 0;
 }
 
 function sortByVote() {
@@ -146,6 +143,7 @@ function sortByVote() {
     return -1;
   });
   render();
+  state.sort = 0;
 }
 
 function handleMovieClick(id) {
@@ -158,6 +156,10 @@ function handleMovieClick(id) {
 function render() {
   if (state.onePageLoading === 0 || state.sort === 1) {
     movieList.innerHTML = "";
+  }
+
+  if (state.sort === 1 && state.movies.length === 0) {
+    return;
   }
 
   if (state.ready === false) {
