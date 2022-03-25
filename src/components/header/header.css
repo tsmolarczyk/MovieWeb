@@ -75,6 +75,7 @@ header {
 
 button.get-popular-btn {
   background: #c84b31e6;
+  min-width: 130px;
 }
 button.get-popular-btn:hover {
   transition: all 0.1s ease;
