@@ -87,6 +87,7 @@ function fetchDetails(id) {
     (res) => {
       res.json().then((data) => {
         state.movieDetails = data;
+        console.log(data);
         openModal();
       });
     }

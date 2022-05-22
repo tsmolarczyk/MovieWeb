@@ -100,6 +100,7 @@ button.get-popular-btn:hover {
   position: relative;
   display: inline-block;
   color: black;
+  margin-right: 2.5rem;
 }
 
 .dropdown-content {
@@ -127,10 +128,15 @@ button.get-popular-btn:hover {
 }
 
 @media (max-width: 1200px) {
-  .btn {
+  .nav__logo {
     display: none;
   }
 }
 
 @media (max-width: 940px) {
+  .nav {
+    margin: 0rem;
+    padding: 0rem;
+    width: 100%;
+  }
 }
